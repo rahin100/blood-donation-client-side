@@ -3,43 +3,43 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer p-10 bg-[#ccd5ae] text-white">
+      <footer className="footer p-10 bg-[#FFF] text-black">
         <aside>
           <Link to={"/"}>
             <img
               className="w-[230px]"
-              src="https://svgur.com/i/zMU.svg"
+              src="https://svgur.com/i/106W.svg"
               alt=""
             />
           </Link>
-          <p>
-            BloomCraft Gardens Ltd.
+          <p className="text-[16px] font-semibold">
+            BloodHarbor.
             <br />
-            Where Beauty Blossoms and Dreams Take Root.
+            Uniting Hearts, Saving Lives, One Drop at a Time...
           </p>
         </aside>
         <nav>
-          <header className="footer-title text-black">Services</header>
-          <a className="link link-hover ">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
+          <header className="footer-title text-black text-[16px] font-semibold">Services</header>
+          <a className="link link-hover ">Thalassemia</a>
+          <a className="link link-hover">Myelodysasia</a>
+          <a className="link link-hover">Hemolytimia</a>
+          <a className="link link-hover">Hyrcoagulable</a>
         </nav>
         <nav>
-          <header className="footer-title text-black">Company</header>
+          <header className="footer-title text-black text-[16px] font-semibold">Company</header>
           <a className="link link-hover">About us</a>
           <a className="link link-hover">Contact</a>
           <a className="link link-hover">Jobs</a>
           <a className="link link-hover">Press kit</a>
         </nav>
         <nav>
-          <header className="footer-title text-black">Legal</header>
+          <header className="footer-title text-black text-[16px] font-semibold">Legal</header>
           <a className="link link-hover">Terms of use</a>
           <a className="link link-hover">Privacy policy</a>
           <a className="link link-hover">Cookie policy</a>
         </nav>
         <nav>
-          <header className="footer-title text-black">Social</header>
+          <header className="footer-title text-black text-[16px] font-semibold">Social</header>
           <div className="grid grid-flow-col gap-4">
             <a>
               <svg

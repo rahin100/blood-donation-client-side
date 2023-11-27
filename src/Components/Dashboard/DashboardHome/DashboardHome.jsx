@@ -1,22 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import DashboardHomeInfo from "./DashboardHomeInfo";
 // import DashboardHomeInfo from "./DashboardHomeInfo";
 import { useNavigate } from "react-router-dom";
+import useDonorCollection from "../../../Hooks/useDonorCollection";
 
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-  const [donationRequests, setDonationRequests] = useState([]);
-  //   const [showAllRequests, setShowAllRequests] = useState(false);
+//   const [donationRequests, setDonationRequests] = useState([]);
+//   //   const [showAllRequests, setShowAllRequests] = useState(false);
 
-  useEffect(() => {
-    // Fetch the user's recent donation requests (adjust the API endpoint accordingly)
-    fetch(`http://localhost:5000/dashboard/donation-request?requesterEmail=${user?.email}`)
-      .then((response) => response.json())
-      .then((data) => setDonationRequests(data));
-  }, []);
+//   useEffect(() => {
+//     // Fetch the user's recent donation requests (adjust the API endpoint accordingly)
+//     fetch(`http://localhost:5000/dashboard/donation-request?requesterEmail=${user?.email}`)
+//       .then((response) => response.json())
+//       .then((data) => setDonationRequests(data));
+//   }, []);
+
+const [donor,refetch] = useDonorCollection()
 
     const handleViewAllRequests = () => {
       navigate("/dashboard/my-donation-requests");
@@ -29,7 +32,7 @@ const DashboardHome = () => {
       </h1>
       <h2 className="mt-[30px] text-xl text-[#ea062b]">Donation Request: </h2>
 
-      {donationRequests.length > 0 && (
+      {donor.length > 0 && (
         <div>
           <h2 className="mt-[30px] text-xl text-[#ea062b]">Recent Donation Requests:</h2>
           <div className="overflow-x-auto">
@@ -42,14 +45,15 @@ const DashboardHome = () => {
                   <th>Donation Date</th>
                   <th>Donation Time</th>
                   <th>Donation Status</th>
-                  <th>Donor Information</th>
+                  <th>Donor Name</th>
+                  <th>Donor Email</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
-                {donationRequests.slice(0, 3).map((data) => (
-                  <DashboardHomeInfo key={data._id} data={data}></DashboardHomeInfo>
+                {donor.slice(0, 3).map((data) => (
+                  <DashboardHomeInfo key={data._id} data={data} refetch={refetch}></DashboardHomeInfo>
                 ))}
                 
                 <button onClick={handleViewAllRequests} className="btn bg-[#ea062b] text-[12px] text-white border-none hover:bg-black hover:text-white mt-[20px]">View All Requests</button>
@@ -60,7 +64,7 @@ const DashboardHome = () => {
         </div>
       )}
 
-      {donationRequests.length === 0 && (
+      {donor.length === 0 && (
         <p className="text-[#ea062b] mt-4">You have no recent donation requests.</p>
       )}
     </div>

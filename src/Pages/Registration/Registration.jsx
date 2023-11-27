@@ -6,12 +6,15 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Container from "../../Components/Container/Container";
 import Lottie from "lottie-react";
 import signUp from "../../assets/signUp.json";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Registration = () => {
+  const axiosSecure = useAxiosSecure();
+
   const [dis, setDis] = useState([]);
   const [upozilas, setUpozilas] = useState([]);
   useEffect(() => {
-    fetch("./dhakadistrict.json")
+    fetch("http://localhost:5000/all_districts")
       .then((res) => res.json())
       .then((data) => setDis(data));
   }, []);
@@ -22,9 +25,9 @@ const Registration = () => {
       .then((data) => setUpozilas(data));
   }, []);
 
-  console.log(upozilas);
+  //   console.log(upozilas);
 
-  console.log(dis);
+  //   console.log(dis);
   const { createUser, googleLogin, handleUpdateProfile } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -35,17 +38,41 @@ const Registration = () => {
     const name = form.name.value;
     const photo = form.photo.value;
     const email = form.email.value;
+    const bloodGroup = form.bloodGroup.value;
+    const district = form.district.value;
+    const upazila = form.upazila.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
-    console.log(name, photo, email, password, confirmPassword);
+    console.log(
+      name,
+      photo,
+      email,
+      password,
+      confirmPassword,
+      bloodGroup,
+      district,
+      upazila
+    );
 
     createUser(email, password)
       .then((res) => {
         console.log(res);
         handleUpdateProfile(name, photo).then(() => {
-          toast.success("User Created Successfully");
-          navigate("/");
-          form.reset();
+          const userInfo = {
+            name: name,
+            email: email,
+            photo: photo,
+            bloodGroup: bloodGroup,
+            district: district,
+            upazila: upazila,
+          };
+          axiosSecure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              toast.success("User Created Successfully");
+              navigate("/");
+              form.reset();
+            }
+          });
         });
       })
       .catch((error) => {
@@ -72,7 +99,7 @@ const Registration = () => {
             <div className="bg-white mb-[50px]">
               <div className="flex-col ">
                 <div className="text-center lg:text-left">
-                  <h1 className="text-4xl font-bold mt-[20px] mb-[20px]">
+                  <h1 className="text-4xl font-bold text-[#ea062b] mt-[20px] mb-[20px]">
                     Registration Here !!
                   </h1>
                 </div>
@@ -125,7 +152,7 @@ const Registration = () => {
                         </label>
                         <label className="input-group">
                           <select
-                            name="type"
+                            name="bloodGroup"
                             className="select select-bordered w-full"
                           >
                             <option value="type">Blood Group</option>
@@ -150,12 +177,15 @@ const Registration = () => {
                         </label>
                         <label className="input-group">
                           <select
-                            name="type"
+                            name="district"
                             className="select select-bordered w-full"
                           >
                             <option value="type">District</option>
                             {dis.map((singleDis) => (
-                              <option value="type" key={singleDis.id}>
+                              <option
+                                value={singleDis.bn_name}
+                                key={singleDis.id}
+                              >
                                 {singleDis.bn_name}
                               </option>
                             ))}
@@ -170,12 +200,15 @@ const Registration = () => {
                         </label>
                         <label className="input-group">
                           <select
-                            name="type"
+                            name="upazila"
                             className="select select-bordered w-full"
                           >
                             <option value="type">Upazila</option>
                             {upozilas.map((singleUpozila) => (
-                              <option value="type" key={singleUpozila.id}>
+                              <option
+                                value={singleUpozila.bn_name}
+                                key={singleUpozila.id}
+                              >
                                 {singleUpozila.bn_name}
                               </option>
                             ))}
@@ -232,7 +265,7 @@ const Registration = () => {
                         to="/login"
                         className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                       >
-                        <button className="btn btn-active btn-link">
+                        <button className="btn bg-[#ea062b] text-white  btn-sm ml-2 md:ml-4">
                           Login
                         </button>
                       </Link>

@@ -8,6 +8,9 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import Profile from "../Components/Dashboard/Profile/Profile";
+import DashboardHome from "../Components/Dashboard/DashboardHome/DashboardHome";
+import MyDonationRequest from "../Components/Dashboard/MyDonationRequest/MyDonationRequest";
+import CreateDonationRequest from "../Components/Dashboard/CreateDonationRequest/createDonationRequest";
 
 const router = createBrowserRouter([
   {
@@ -42,14 +45,20 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
+        path: "/dashboard",
+        element: <DashboardHome></DashboardHome>
+      },
+      {
         path: "/dashboard/profile",
         element: <Profile></Profile>,
-        loader:async () =>{
-          const res = await fetch("http://localhost:5000/users")
-          const data = await res.json()
-          return data;
-        }
-        
+      },
+      {
+        path: "/dashboard/my-donation-requests",
+        element: <MyDonationRequest></MyDonationRequest>,
+      },
+      {
+        path: "/dashboard/create-donation-request",
+        element: <CreateDonationRequest></CreateDonationRequest>,
       },
     ],
   },

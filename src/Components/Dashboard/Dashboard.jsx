@@ -10,6 +10,12 @@ const Dashboard = () => {
             <li className="text-xl font-semibold">
               <NavLink to="/dashboard/profile">Profile</NavLink>
             </li>
+            <li className="text-xl font-semibold">
+              <NavLink to="/dashboard/my-donation-requests">My Donation Requests</NavLink>
+            </li>
+            <li className="text-xl font-semibold">
+              <NavLink to="/dashboard/create-donation-request">Create Donation Request</NavLink>
+            </li>
           </ul>
         </div>
         <div className="flex-1">

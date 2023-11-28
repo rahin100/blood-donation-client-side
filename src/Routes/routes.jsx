@@ -12,6 +12,9 @@ import DashboardHome from "../Components/Dashboard/DashboardHome/DashboardHome";
 import MyDonationRequest from "../Components/Dashboard/MyDonationRequest/MyDonationRequest";
 import CreateDonationRequest from "../Components/Dashboard/CreateDonationRequest/createDonationRequest";
 import SearchDonor from "../Pages/SearchDonor/searchDonor";
+import BloodDonationRequest from "../Pages/BloodDonationRequest/BloodDonationRequest";
+import ViewDetails from "../Pages/ViewDetailsPage/ViewDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "donation_requests",
+        element: <BloodDonationRequest></BloodDonationRequest>,
+      },
+      {
+        path: "view_details/:_id",
+        element: <PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>
       },
       {
         path: "search_donor",

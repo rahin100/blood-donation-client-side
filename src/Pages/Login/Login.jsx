@@ -4,7 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Container from "../../Components/Container/Container";
 import Lottie from "lottie-react";
 import signUp from "../../assets/signUp.json";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { signIn, googleLogin } = useContext(AuthContext);
@@ -23,9 +23,15 @@ const Login = () => {
         const user = await signIn(email, password);
         console.log(user);
         form.reset();
-        toast.success("User Logged In Successfully");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500
+        });
   
-        fetch('https://bloom-craft-garden-server.vercel.app/jwt',{
+        fetch('http://localhost:5000/jwt',{
           method:"POST",
           credentials:'include',
           'Access-Control-Allow-Origin': '*',

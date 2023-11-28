@@ -7,6 +7,7 @@ import Container from "../../Components/Container/Container";
 import Lottie from "lottie-react";
 import signUp from "../../assets/signUp.json";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Registration = () => {
   const axiosSecure = useAxiosSecure();
@@ -68,7 +69,13 @@ const Registration = () => {
           };
           axiosSecure.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {
-              toast.success("User Created Successfully");
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User Created Successful",
+                showConfirmButton: false,
+                timer: 1500
+              });
               navigate("/");
               form.reset();
             }

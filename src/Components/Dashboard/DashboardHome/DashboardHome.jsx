@@ -4,6 +4,7 @@ import DashboardHomeInfo from "./DashboardHomeInfo";
 // import DashboardHomeInfo from "./DashboardHomeInfo";
 import { useNavigate } from "react-router-dom";
 import useDonorCollection from "../../../Hooks/useDonorCollection";
+import Navbar from "../../Navbar/Navbar";
 
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
@@ -27,6 +28,7 @@ const [donor,refetch] = useDonorCollection()
 
   return (
     <div>
+      <Navbar></Navbar>
       <h1 className="text-xl text-white bg-[#ea062b] text-center p-4">
         Welcome To your dashboard {user?.displayName}
       </h1>
@@ -49,6 +51,7 @@ const [donor,refetch] = useDonorCollection()
                   <th>Donor Email</th>
                   <th>Edit</th>
                   <th>Delete</th>
+                  <th>View</th>
                 </tr>
               </thead>
               <tbody>

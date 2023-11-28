@@ -1,12 +1,10 @@
-
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 // import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
-const DashboardHomeInfo = ({ data,refetch }) => {
- 
+const DashboardHomeInfo = ({ data, refetch }) => {
   const {
     _id,
     recipientName,
@@ -24,19 +22,13 @@ const DashboardHomeInfo = ({ data,refetch }) => {
     console.log("Edit donation request:", _id);
   };
 
-  const handleDelete = () => {
-    // Handle deletion (show confirmation modal, then delete the request)
-    console.log("Delete donation request:", _id);
-  };
-
   const handleViewDetails = () => {
     // Handle redirection to the details page (adjust the route accordingly)
     // Example: history.push(`/dashboard/donation-request-details/${data.id}`);
     console.log("View donation request details:", _id);
   };
 
-
-  const handleDone = () =>{
+  const handleDone = () => {
     fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
       method: "PATCH",
       headers: {
@@ -44,7 +36,7 @@ const DashboardHomeInfo = ({ data,refetch }) => {
       },
       body: JSON.stringify({
         donationStatus: "Done",
-        donorName: donorName, 
+        donorName: donorName,
         donorEmail: donorEmail,
       }),
     })
@@ -62,9 +54,9 @@ const DashboardHomeInfo = ({ data,refetch }) => {
           });
         }
       });
-  }
+  };
 
-  const handleCancel = () =>{
+  const handleCancel = () => {
     fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
       method: "PATCH",
       headers: {
@@ -72,7 +64,7 @@ const DashboardHomeInfo = ({ data,refetch }) => {
       },
       body: JSON.stringify({
         donationStatus: "Canceled",
-        donorName: donorName, 
+        donorName: donorName,
         donorEmail: donorEmail,
       }),
     })
@@ -90,9 +82,33 @@ const DashboardHomeInfo = ({ data,refetch }) => {
           });
         }
       });
-  }
+  };
 
-
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            refetch();
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+          });
+      }
+    });
+  };
 
   return (
     <tr>
@@ -105,8 +121,18 @@ const DashboardHomeInfo = ({ data,refetch }) => {
       <td>
         {donationStatus === "inprogress" ? (
           <div className="flex gap-1">
-            <button onClick={handleDone} className="btn-sm bg-green-500 text-white">Done</button>
-            <button onClick={handleCancel} className="btn-sm bg-[#ea062b] text-white">Cancel</button>
+            <button
+              onClick={handleDone}
+              className="btn-sm bg-green-500 text-white"
+            >
+              Done
+            </button>
+            <button
+              onClick={handleCancel}
+              className="btn-sm bg-[#ea062b] text-white"
+            >
+              Cancel
+            </button>
           </div>
         ) : (
           <td>{donationStatus}</td>
@@ -145,26 +171,34 @@ const DashboardHomeInfo = ({ data,refetch }) => {
 
       <td>{donorName}</td>
       <td>{donorEmail}</td>
-      <td
-        onClick={handleEdit}
-        className="bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
-      >
-        Edit
+      <td>
+        <Link to={`/dashboard/update-donation/${_id}`}>
+          <td
+            onClick={handleEdit}
+            className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+          >
+            Edit
+          </td>
+        </Link>
       </td>
-      <td
-        onClick={handleDelete}
-        className="bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
-      >
-        Delete
-      </td>
-      <Link to={`/view_details/${_id}`}>
+      <td>
         <td
-          onClick={handleViewDetails}
+          onClick={handleDelete}
           className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
         >
-          Details
+          Delete
         </td>
-      </Link>
+      </td>
+      <td>
+        <Link to={`/view_details/${_id}`}>
+          <td
+            onClick={handleViewDetails}
+            className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+          >
+            Details
+          </td>
+        </Link>
+      </td>
     </tr>
   );
 };

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 
 /* eslint-disable react/prop-types */
@@ -59,7 +59,13 @@ const ProfileInfo = ({ singleProfile,refetch }) => {
         console.log(data);
         refetch()
         if (data.modifiedCount > 0) {
-          toast.success("Successfully data Updated!");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Done",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       });
   };

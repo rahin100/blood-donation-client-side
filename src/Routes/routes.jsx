@@ -15,6 +15,7 @@ import SearchDonor from "../Pages/SearchDonor/searchDonor";
 import BloodDonationRequest from "../Pages/BloodDonationRequest/BloodDonationRequest";
 import ViewDetails from "../Pages/ViewDetailsPage/ViewDetails";
 import PrivateRoute from "./PrivateRoute";
+import UpdateDonation from "../Pages/UpdateDonation/UpdateDonation";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardHome></DashboardHome>
+      },
+      {
+        path: "/dashboard/update-donation/:_id",
+        element: <UpdateDonation></UpdateDonation>,
       },
       {
         path: "/dashboard/profile",

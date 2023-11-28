@@ -32,7 +32,6 @@ const [donor,refetch] = useDonorCollection()
       <h1 className="text-xl text-white bg-[#ea062b] text-center p-4">
         Welcome To your dashboard {user?.displayName}
       </h1>
-      <h2 className="mt-[30px] text-xl text-[#ea062b]">Donation Request: </h2>
 
       {donor.length > 0 && (
         <div>

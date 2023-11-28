@@ -16,17 +16,6 @@ const DashboardHomeInfo = ({ data, refetch }) => {
     donorEmail,
     donorName,
   } = data;
-  const handleEdit = () => {
-    // Handle redirection to the edit page (adjust the route accordingly)
-    // Example: history.push(`/dashboard/edit-donation-request/${data.id}`);
-    console.log("Edit donation request:", _id);
-  };
-
-  const handleViewDetails = () => {
-    // Handle redirection to the details page (adjust the route accordingly)
-    // Example: history.push(`/dashboard/donation-request-details/${data.id}`);
-    console.log("View donation request details:", _id);
-  };
 
   const handleDone = () => {
     fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
@@ -139,42 +128,12 @@ const DashboardHomeInfo = ({ data, refetch }) => {
         )}
       </td>
 
-      {/* <td>
-          {isButtonsVisible ? (
-            <div className="flex gap-1">
-              <button
-                className="btn-sm bg-green-500 text-white"
-                onClick={() => {
-                  setSelectedStatus("done");
-                  handleConfirmDonation();
-                }}
-                disabled={!isButtonsVisible}
-              >
-                Done
-              </button>
-              <button
-                className="btn-sm bg-[#ea062b] text-white"
-                onClick={() => {
-                  setSelectedStatus("canceled");
-                  handleConfirmDonation();
-                }}
-                disabled={!isButtonsVisible}
-              >
-                Cancel
-              </button>
-            </div>
-          ) : (
-            <td>{donationStatus}</td>
-          )}
-        </td>
-       */}
-
       <td>{donorName}</td>
       <td>{donorEmail}</td>
       <td>
         <Link to={`/dashboard/update-donation/${_id}`}>
           <td
-            onClick={handleEdit}
+            
             className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
           >
             Edit
@@ -192,7 +151,7 @@ const DashboardHomeInfo = ({ data, refetch }) => {
       <td>
         <Link to={`/view_details/${_id}`}>
           <td
-            onClick={handleViewDetails}
+            
             className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
           >
             Details

@@ -61,20 +61,23 @@ const Navbar = () => {
         Blog
       </NavLink>
 
-      <NavLink
-        to={"/login"}
-        className={({ isActive, isPending }) =>
-          isActive
-            ? "bg-red-500 text-white text-[16px] font-bold mr-3 p-2 rounded-lg"
-            : isPending
-            ? "pending"
-            : "text-black text-[16px] font-bold mr-3 p-2 rounded-lg"
-        }
-      >
-        {/* other code */}
-        Log in
-      </NavLink>
-
+      {
+        user?.email ? (
+          ""
+        ) : (<NavLink
+          to={"/login"}
+          className={({ isActive, isPending }) =>
+            isActive
+              ? "bg-red-500 text-white text-[16px] font-bold mr-3 p-2 rounded-lg"
+              : isPending
+              ? "pending"
+              : "text-black text-[16px] font-bold mr-3 p-2 rounded-lg"
+          }
+        >
+          {/* other code */}
+          Log in
+        </NavLink>)
+      }
       <NavLink
         to={"/registration"}
         className={({ isActive, isPending }) =>

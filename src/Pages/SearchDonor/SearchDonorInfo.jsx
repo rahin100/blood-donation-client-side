@@ -15,9 +15,7 @@ const SearchDonorInfo = ({ singleUser }) => {
           <p>BG: {bloodGroup}</p>
           <p>District: {district}</p>
           <p>Upazila: {upazila}</p>
-          <div className="card-actions">
-            <button className="btn bg-[#ea062b] text-white border-none hover:bg-black hover:text-white">View Details</button>
-          </div>
+        
         </div>
       </div>
     </Container>

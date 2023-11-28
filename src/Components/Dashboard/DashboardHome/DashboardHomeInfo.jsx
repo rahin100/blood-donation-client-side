@@ -101,13 +101,12 @@ const DashboardHomeInfo = ({ data, refetch }) => {
 
   return (
     <tr>
-      <td>{recipientName}</td>
-      <td>{recipientDistrict}</td>
-      <td>{recipientUpazila}</td>
-
-      <td>{donationDate}</td>
-      <td>{donationTime}</td>
-      <td>
+      <td className="p-2">{recipientName}</td>
+      <td className="p-2">{recipientDistrict}</td>
+      <td className="p-2">{recipientUpazila}</td>
+      <td className="p-2">{donationDate}</td>
+      <td className="p-2">{donationTime}</td>
+      <td className="p-2">
         {donationStatus === "inprogress" ? (
           <div className="flex gap-1">
             <button
@@ -128,9 +127,9 @@ const DashboardHomeInfo = ({ data, refetch }) => {
         )}
       </td>
 
-      <td>{donorName}</td>
-      <td>{donorEmail}</td>
-      <td>
+      <td className="p-2">{donorName}</td>
+      <td className="p-2">{donorEmail}</td>
+      <td className="p-2">
         <Link to={`/dashboard/update-donation/${_id}`}>
           <td
             
@@ -140,7 +139,7 @@ const DashboardHomeInfo = ({ data, refetch }) => {
           </td>
         </Link>
       </td>
-      <td>
+      <td className="p-2">
         <td
           onClick={handleDelete}
           className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
@@ -148,7 +147,7 @@ const DashboardHomeInfo = ({ data, refetch }) => {
           Delete
         </td>
       </td>
-      <td>
+      <td className="p-2">
         <Link to={`/view_details/${_id}`}>
           <td
             

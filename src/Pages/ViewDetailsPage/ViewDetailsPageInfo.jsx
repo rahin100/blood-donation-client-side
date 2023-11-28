@@ -29,6 +29,8 @@ const ViewDetailsPageInfo = ({ singleViewDetails, refetch }) => {
       },
       body: JSON.stringify({
         donationStatus: "inprogress",
+        donorName: user?.displayName,
+        donorEmail: user?.email
       }),
     })
       .then((res) => res.json())

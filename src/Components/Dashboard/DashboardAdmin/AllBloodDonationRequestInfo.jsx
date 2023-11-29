@@ -4,9 +4,11 @@ import Swal from "sweetalert2";
 
 
 /* eslint-disable react/prop-types */
-const MyDonationrequestInfo = ({ data, refetch }) => {
+const AllBloodDonationRequestInfo = ({ data, refetch }) => {
   const {
     _id,
+    requesterName,
+    requesterEmail,
     recipientName,
     recipientDistrict,
     recipientUpazila,
@@ -101,6 +103,8 @@ const MyDonationrequestInfo = ({ data, refetch }) => {
 
   return (
     <tr>
+      <td className="p-2">{requesterName}</td>
+      <td className="p-2">{requesterEmail}</td>
       <td className="p-2">{recipientName}</td>
       <td className="p-2">{recipientDistrict}</td>
       <td className="p-2">{recipientUpazila}</td>
@@ -159,4 +163,4 @@ const MyDonationrequestInfo = ({ data, refetch }) => {
   );
 };
 
-export default MyDonationrequestInfo;
+export default AllBloodDonationRequestInfo;

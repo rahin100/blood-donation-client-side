@@ -2,10 +2,10 @@
 
 import Swal from "sweetalert2";
 
-const AllUsersInfo = ({ singleUser,refetch }) => {
-  const {_id, name, photo, email, status, Role } = singleUser;
+const AllUsersInfo = ({ singleUser, refetch }) => {
+  const { _id, name, photo, email, status, Role } = singleUser;
 
-  const handleBlock = () =>{
+  const handleBlock = () => {
     fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
       method: "PATCH",
       headers: {
@@ -13,7 +13,6 @@ const AllUsersInfo = ({ singleUser,refetch }) => {
       },
       body: JSON.stringify({
         status: "Blocked",
-
       }),
     })
       .then((res) => res.json())
@@ -30,9 +29,9 @@ const AllUsersInfo = ({ singleUser,refetch }) => {
           });
         }
       });
-  }
+  };
 
-  const handleUnBlock = () =>{
+  const handleUnBlock = () => {
     fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
       method: "PATCH",
       headers: {
@@ -40,7 +39,6 @@ const AllUsersInfo = ({ singleUser,refetch }) => {
       },
       body: JSON.stringify({
         status: "Active",
-
       }),
     })
       .then((res) => res.json())
@@ -57,17 +55,16 @@ const AllUsersInfo = ({ singleUser,refetch }) => {
           });
         }
       });
-  }
+  };
 
-  const handleMakeVolunteer = () =>{
+  const handleMakeVolunteer = () => {
     fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        Role: "Volunteer"
-
+        Role: "Volunteer",
       }),
     })
       .then((res) => res.json())
@@ -84,11 +81,65 @@ const AllUsersInfo = ({ singleUser,refetch }) => {
           });
         }
       });
-  }
- 
+  };
 
+  const handleDonorToAdmin = () => {
+    // Add a condition to check if the current role is "Donor"
+    if (Role === "Donor") {
+      fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Role: "Admin",
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          refetch();
+          if (data.modifiedCount > 0) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${name} as a Admin`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      // Display a message or handle the case where the role is not "Donor"
+      console.log("Cannot perform Donor to Admin action. User is not a Donor.");
+    }
+  };
 
-
+  const handleVolunteerToAdmin = () => {
+    fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Role: "Admin",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${name} as a Admin`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
 
   return (
     <tr>
@@ -107,27 +158,46 @@ const AllUsersInfo = ({ singleUser,refetch }) => {
       <td>{status}</td>
 
       <td className="p-2">
-        <td onClick={handleBlock} className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer">
+        <button
+          onClick={handleBlock}
+          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+        >
           Block
-        </td>
+        </button>
       </td>
       <td className="p-2">
-        <td onClick={handleUnBlock} className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer">
+        <button
+          onClick={handleUnBlock}
+          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+        >
           Unblock
-        </td>
+        </button>
       </td>
       <td className="p-2">
-        <td onClick={handleMakeVolunteer} className="btn bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer">
-         Make Volunteer
-        </td>
+        <button
+          onClick={handleMakeVolunteer}
+          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+        >
+          Make Volunteer
+        </button>
       </td>
-   
+
       <td className="p-2">
-        <select className="select select-bordered join-item bg-[#ea062b] text-white border-none">
+        <select
+          className="select select-bordered join-item bg-[#ea062b] text-white border-none"
+          onChange={(e) => {
+            const selectedOption = e.target.value;
+            if (selectedOption === "Donor to Admin") {
+              handleDonorToAdmin();
+            } else if (selectedOption === "Volunteer to Admin") {
+              handleVolunteerToAdmin();
+            }
+          }}
+        >
           <option disabled selected>
-          Make Admin
+            Make Admin
           </option>
-          <option>Donor</option>
+          <option>Donor to Admin</option>
           <option>Volunteer to Admin</option>
         </select>
       </td>

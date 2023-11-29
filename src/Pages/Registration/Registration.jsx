@@ -66,6 +66,8 @@ const Registration = () => {
             bloodGroup: bloodGroup,
             district: district,
             upazila: upazila,
+            status: "Active",
+            role: "Donor"
           };
           axiosSecure.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {

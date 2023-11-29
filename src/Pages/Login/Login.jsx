@@ -7,6 +7,7 @@ import signUp from "../../assets/signUp.json";
 import Swal from "sweetalert2";
 
 const Login = () => {
+
   const { signIn, googleLogin } = useContext(AuthContext);
 
   const location = useLocation();

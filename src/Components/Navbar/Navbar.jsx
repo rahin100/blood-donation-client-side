@@ -9,13 +9,14 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const handleSignOut = () => {
-    logOut()
-      .then(() => {
-        navigate("/");
-      })
-      .catch();
-  };
+ const handleSignOut = async () => {
+  try {
+    await logOut();
+    navigate("/");
+  } catch (error) {
+    console.error("Logout error:", error);
+  }
+};
 
   const navLink = (
     <>

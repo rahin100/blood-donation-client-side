@@ -15,6 +15,10 @@ import BloodDonationRequest from "../Pages/BloodDonationRequest/BloodDonationReq
 import ViewDetails from "../Pages/ViewDetailsPage/ViewDetails";
 import PrivateRoute from "./PrivateRoute";
 import UpdateDonation from "../Pages/UpdateDonation/UpdateDonation";
+import AdminHome from "../Components/Dashboard/DashboardAdmin/AdminHome";
+import AllUsers from "../Components/Dashboard/DashboardAdmin/AllUsers";
+import AllBloodDonationRequest from "../Components/Dashboard/DashboardAdmin/AllBloodDonationRequest";
+import ContentManagement from "../Components/Dashboard/DashboardAdmin/ContentManagement";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +79,23 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/create-donation-request",
         element: <CreateDonationRequest></CreateDonationRequest>,
+      },
+      // Admin routes 
+      {
+        path: "/dashboard/admin",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "/dashboard/all-users",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "/dashboard/all-blood-donation-requests",
+        element:<AllBloodDonationRequest></AllBloodDonationRequest>
+      },
+      {
+        path: "/dashboard/content-management",
+        element: <ContentManagement></ContentManagement>,
       },
     ],
   },

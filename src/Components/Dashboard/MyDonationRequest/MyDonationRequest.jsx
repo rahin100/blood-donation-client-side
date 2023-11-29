@@ -44,7 +44,7 @@ const MyDonationRequest = () => {
 
       <div className="flex flex-wrap mb-4 space-y-2 md:space-y-0 md:space-x-2">
         <button
-          className={`btn-sm ${
+          className={`btn ${
             currentStatus === "all" ? "btn-active" : ""
           } w-full md:w-auto`}
           onClick={() => handleStatusChange("all")}
@@ -52,7 +52,7 @@ const MyDonationRequest = () => {
           All
         </button>
         <button
-          className={`btn-sm ${
+          className={`btn ${
             currentStatus === "pending" ? "btn-active" : ""
           } w-full md:w-auto`}
           onClick={() => handleStatusChange("pending")}
@@ -60,7 +60,7 @@ const MyDonationRequest = () => {
           Pending
         </button>
         <button
-          className={`btn-sm ${
+          className={`btn ${
             currentStatus === "inprogress" ? "btn-active" : ""
           } w-full md:w-auto`}
           onClick={() => handleStatusChange("inprogress")}
@@ -68,7 +68,7 @@ const MyDonationRequest = () => {
           In Progress
         </button>
         <button
-          className={`btn-sm  ${
+          className={`btn  ${
             currentStatus === "Done" ? "btn-active" : ""
           } w-full md:w-auto`}
           onClick={() => handleStatusChange("Done")}
@@ -76,7 +76,7 @@ const MyDonationRequest = () => {
           Done
         </button>
         <button
-          className={`btn-sm ${
+          className={`btn ${
             currentStatus === "Canceled" ? "btn-active" : ""
           } w-full md:w-auto`}
           onClick={() => handleStatusChange("Canceled")}

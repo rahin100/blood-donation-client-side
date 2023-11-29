@@ -7,7 +7,7 @@ const AllUsers = () => {
   const [allUsers, refetch] = useCollectUsers();
   const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentFilter, setCurrentFilter] = useState("all"); 
+  const [currentFilter, setCurrentFilter] = useState("all");
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
@@ -28,35 +28,35 @@ const AllUsers = () => {
   const indexOfFirstUser = indexOfLastUser - itemsPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <Container>
       <div>
         <div>
           <h1 className="text-xl text-white bg-[#ea062b] text-center p-4">
-            Manage All Users {allUsers.length}
+            Manage All Users
           </h1>
         </div>
 
+        <h1 className="text-xl text-[#ea062b] mt-[30px]">
+          All Users: {allUsers.length}
+        </h1>
         <div className="flex flex-wrap mb-4 space-y-2 md:space-y-0 md:space-x-2 mt-[30px]">
           <button
-            className={`btn ${currentFilter === "all" ? "btn-active" : ""} w-full md:w-auto`}
+            className={`btn ${currentFilter === "all" && "btn-active"} w-full md:w-auto`}
             onClick={() => handleFilterChange("all")}
           >
             All
           </button>
           <button
-            className={`btn ${currentFilter === "active" ? "btn-active" : ""} w-full md:w-auto`}
+            className={`btn ${currentFilter === "active" && "btn-active"} w-full md:w-auto`}
             onClick={() => handleFilterChange("active")}
           >
             Active
           </button>
           <button
-            className={`btn ${currentFilter === "blocked" ? "btn-active" : ""} w-full md:w-auto`}
+            className={`btn ${currentFilter === "blocked" && "btn-active"} w-full md:w-auto`}
             onClick={() => handleFilterChange("blocked")}
           >
             Blocked
@@ -70,6 +70,7 @@ const AllUsers = () => {
                 <th>Avatar</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Status</th>
                 <th>Block</th>
                 <th>Unblock</th>
@@ -83,7 +84,7 @@ const AllUsers = () => {
                   key={singleUser._id}
                   singleUser={singleUser}
                   refetch={refetch}
-                ></AllUsersInfo>
+                />
               ))}
             </tbody>
           </table>
@@ -92,7 +93,7 @@ const AllUsers = () => {
             {pageNumbers.map((page) => (
               <button
                 key={page}
-                className={`join-item btn ${currentPage === page ? "btn-active" : ""}`}
+                className={`join-item btn ${currentPage === page && "btn-active"}`}
                 onClick={() => handlePageClick(page)}
               >
                 {page}

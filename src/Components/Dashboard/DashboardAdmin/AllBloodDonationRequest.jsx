@@ -1,4 +1,3 @@
-// AllBloodDonationRequest.js
 import { useState } from "react";
 import AllBloodDonationRequestInfo from "./AllBloodDonationRequestInfo";
 import useAllDonorCollection from "../../../Hooks/useAllDonorCollection";
@@ -44,7 +43,7 @@ const AllBloodDonationRequest = () => {
       </h2>
 
       <div className="flex flex-wrap mb-4 space-y-2 md:space-y-0 md:space-x-2">
-        <button
+      <button
           className={`btn ${
             currentStatus === "all" ? "btn-active" : ""
           } w-full md:w-auto`}
@@ -87,8 +86,8 @@ const AllBloodDonationRequest = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="table">
-          <thead>
+        <table className="w-full">
+        <thead>
             <tr>
               <th className="p-2">Requester Name</th>
               <th className="p-2">Requester Email</th>
@@ -135,4 +134,3 @@ const AllBloodDonationRequest = () => {
 };
 
 export default AllBloodDonationRequest;
-

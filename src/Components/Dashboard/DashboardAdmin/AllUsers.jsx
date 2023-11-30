@@ -28,7 +28,11 @@ const AllUsers = () => {
   const indexOfFirstUser = indexOfLastUser - itemsPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
 
   return (
     <Container>

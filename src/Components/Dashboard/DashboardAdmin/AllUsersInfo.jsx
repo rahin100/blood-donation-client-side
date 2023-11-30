@@ -160,7 +160,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
       <td className="p-2">
         <button
           onClick={handleBlock}
-          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-xl cursor-pointer"
         >
           Block
         </button>
@@ -168,7 +168,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
       <td className="p-2">
         <button
           onClick={handleUnBlock}
-          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-xl cursor-pointer"
         >
           Unblock
         </button>
@@ -176,7 +176,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
       <td className="p-2">
         <button
           onClick={handleMakeVolunteer}
-          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+          className="btn-sm text-[11px] bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-xl cursor-pointer"
         >
           Make Volunteer
         </button>

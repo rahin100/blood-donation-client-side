@@ -82,7 +82,7 @@ const router = createBrowserRouter([
       },
       // Admin routes 
       {
-        path: "/dashboard/admin",
+        path: "/dashboard",
         element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>,
       },
       {

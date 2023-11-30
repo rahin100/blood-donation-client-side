@@ -1,13 +1,11 @@
 
 
-
 const AdminHome = () => {
-    return (
-        <div>
-            
-            hello
-        </div>
-    );
+  return (
+    <div>
+        
+    </div>
+  );
 };
 
 export default AdminHome;

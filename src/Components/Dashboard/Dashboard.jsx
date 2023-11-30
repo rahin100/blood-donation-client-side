@@ -1,12 +1,14 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
+import Container from "../Container/Container";
 
 const Dashboard = () => {
-const [isAdmin] = useAdmin()
+  const [isAdmin] = useAdmin();
+
   return (
-    <div className="flex gap-5">
-      <div className="w-64 min-h-full bg-[#ea062b] text-white ">
-        <ul className="menu p-4">
+    <div className="flex flex-col md:flex-row gap-5">
+      <div className="md:w-64 min-h-screen bg-[#ea062b] text-white">
+        <ul className="menu p-4 space-y-2">
           {isAdmin ? (
             <>
               <li className="text-[14px] font-semibold">
@@ -48,9 +50,11 @@ const [isAdmin] = useAdmin()
           )}
         </ul>
       </div>
-      <div className="flex-1">
-        <Outlet></Outlet>
-      </div>
+      <Container>
+        <div className="flex-1">
+          <Outlet></Outlet>
+        </div>
+      </Container>
     </div>
   );
 };

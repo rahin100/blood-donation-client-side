@@ -58,40 +58,40 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "/dashboard",
-        element: <DashboardHome></DashboardHome>
+        element: <PrivateRoute><DashboardHome></DashboardHome></PrivateRoute>
       },
       {
         path: "/dashboard/update-donation/:_id",
-        element: <UpdateDonation></UpdateDonation>,
+        element: <PrivateRoute><UpdateDonation></UpdateDonation></PrivateRoute>,
       },
       {
         path: "/dashboard/profile",
-        element: <Profile></Profile>,
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
       },
       {
         path: "/dashboard/my-donation-requests",
-        element: <MyDonationRequest></MyDonationRequest>,
+        element: <PrivateRoute><MyDonationRequest></MyDonationRequest></PrivateRoute>,
       },
       {
         path: "/dashboard/create-donation-request",
-        element: <CreateDonationRequest></CreateDonationRequest>,
+        element: <PrivateRoute><CreateDonationRequest></CreateDonationRequest></PrivateRoute>,
       },
       // Admin routes 
       {
         path: "/dashboard/admin",
-        element: <AdminHome></AdminHome>,
+        element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>,
       },
       {
         path: "/dashboard/all-users",
-        element: <AllUsers></AllUsers>,
+        element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute>,
       },
       {
         path: "/dashboard/all-blood-donation-requests",
-        element:<AllBloodDonationRequest></AllBloodDonationRequest>
+        element:<PrivateRoute><AllBloodDonationRequest></AllBloodDonationRequest></PrivateRoute>
       },
       {
         path: "/dashboard/content-management",

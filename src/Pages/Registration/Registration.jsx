@@ -29,7 +29,7 @@ const Registration = () => {
   //   console.log(upozilas);
 
   //   console.log(dis);
-  const { createUser, googleLogin, handleUpdateProfile } =
+  const { createUser, handleUpdateProfile } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -86,17 +86,6 @@ const Registration = () => {
       })
       .catch((error) => {
         toast.error(error.message);
-      });
-  };
-
-  const handleSocialLogin = (media) => {
-    media()
-      .then((result) => {
-        console.log(result.user);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
       });
   };
 
@@ -279,17 +268,6 @@ const Registration = () => {
                         </button>
                       </Link>
                     </p>
-                    <div>
-                      <p className="text-[14px] font-light text-gray-500 dark:text-gray-400">
-                        Continue With
-                        <button
-                          onClick={() => handleSocialLogin(googleLogin)}
-                          className="btn bg-[#ea062b] text-white btn-sm ml-[10px]"
-                        >
-                          Google
-                        </button>
-                      </p>
-                    </div>
                   </form>
                 </div>
               </div>

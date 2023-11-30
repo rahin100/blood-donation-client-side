@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import DashboardHomeInfo from "./DashboardHomeInfo";
-// import DashboardHomeInfo from "./DashboardHomeInfo";
 import { useNavigate } from "react-router-dom";
 import useDonorCollection from "../../../Hooks/useDonorCollection";
 import Navbar from "../../Navbar/Navbar";
@@ -9,16 +8,6 @@ import Navbar from "../../Navbar/Navbar";
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  //   const [donationRequests, setDonationRequests] = useState([]);
-  //   //   const [showAllRequests, setShowAllRequests] = useState(false);
-
-  //   useEffect(() => {
-  //     // Fetch the user's recent donation requests (adjust the API endpoint accordingly)
-  //     fetch(`http://localhost:5000/dashboard/donation-request?requesterEmail=${user?.email}`)
-  //       .then((response) => response.json())
-  //       .then((data) => setDonationRequests(data));
-  //   }, []);
 
   const [donor, refetch] = useDonorCollection();
 

@@ -8,7 +8,7 @@ const CreateDonationRequest = () => {
   const [zilla, setAllZilla] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/all_districts")
+    fetch("http://localhost:5000/all_districts",{withCredentials:true})
       .then((res) => res.json())
       .then((data) => setAllDistricts(data));
   }, []);

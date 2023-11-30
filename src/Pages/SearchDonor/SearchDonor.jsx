@@ -28,7 +28,11 @@ const SearchDonor = () => {
   }, []);
 
   useEffect(() => {
-    axiosSecure.get("/users").then((res) => {
+    axiosSecure.get("/users",{
+      headers:{
+        authorization: `Bearer ${localStorage.getItem('access-token')}`
+      }
+    }).then((res) => {
       setAllUser(res.data);
       setSearchResults(res.data); // Initialize search results with all users
     });

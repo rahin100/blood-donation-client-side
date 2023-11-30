@@ -10,7 +10,7 @@ const [isAdmin] = useAdmin()
           {isAdmin ? (
             <>
               <li className="text-[14px] font-semibold">
-                <NavLink to="/dashboard/admin">Admin Home</NavLink>
+                <NavLink to="/dashboard ">Admin Home</NavLink>
               </li>
               <li className="text-[14px] font-semibold">
                 <NavLink to="/dashboard/all-users">All Users Page</NavLink>

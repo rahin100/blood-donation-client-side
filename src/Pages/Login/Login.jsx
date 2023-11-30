@@ -5,10 +5,13 @@ import Container from "../../Components/Container/Container";
 import Lottie from "lottie-react";
 import signUp from "../../assets/signUp.json";
 import Swal from "sweetalert2";
+// import useAxiosSecure from "../../Hooks/useAxiosSecure";
+
 
 const Login = () => {
+  // const axiosSecure = useAxiosSecure()
 
-  const { signIn, googleLogin } = useContext(AuthContext);
+  const { signIn} = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,20 +35,28 @@ const Login = () => {
           timer: 1500
         });
   
-        fetch('http://localhost:5000/jwt',{
-          method:"POST",
-          credentials:'include',
-          'Access-Control-Allow-Origin': '*',
-          headers: {
-            "content-type": "application/json"
-          },
-          body:JSON.stringify({email: email})
+        // fetch('http://localhost:5000/jwt',{
+        //   method:"POST",
+        //   credentials:'include',
+        //   'Access-Control-Allow-Origin': '*',
+        //   headers: {
+        //     "content-type": "application/json"
+        //   },
+        //   body:JSON.stringify({email: email})
     
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          console.log(data)
-        })
+        // })
+        // .then(res=>res.json())
+        // .then(data=>{
+        //   console.log(data)
+        // })
+        // const userEmail = {email}
+        // axiosSecure.post('/jwt',userEmail,{
+        //   withCredentials:true
+        // })
+        // .then(res=>{
+        //   console.log(res.data)
+        // })
+        
         navigate(location?.state ? location.state : "/");
   
       } catch (error) {
@@ -53,17 +64,7 @@ const Login = () => {
       }
     };
   
-  
-  const handleSocialLogin = (media) => {
-    media()
-      .then((result) => {
-        console.log(result.user);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+
 
   return (
     <Container>
@@ -121,17 +122,6 @@ const Login = () => {
                       </button>
                     </Link>
                   </p>
-                  <div className="text-center md:text-left mt-4">
-                    <p className="text-xs md:text-sm font-light text-gray-500 dark:text-gray-400">
-                      Continue With
-                      <button
-                        onClick={() => handleSocialLogin(googleLogin)}
-                        className="btn bg-[#ea062b] text-white  btn-sm ml-2 md:ml-4"
-                      >
-                        Google
-                      </button>
-                    </p>
-                  </div>
                 </form>
               </div>
             </div>

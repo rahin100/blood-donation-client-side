@@ -1,5 +1,3 @@
-// Dashboard.js
-
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
 import Container from "../Container/Container";

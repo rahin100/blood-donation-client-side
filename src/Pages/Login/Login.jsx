@@ -34,29 +34,6 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500
         });
-  
-        // fetch('http://localhost:5000/jwt',{
-        //   method:"POST",
-        //   credentials:'include',
-        //   'Access-Control-Allow-Origin': '*',
-        //   headers: {
-        //     "content-type": "application/json"
-        //   },
-        //   body:JSON.stringify({email: email})
-    
-        // })
-        // .then(res=>res.json())
-        // .then(data=>{
-        //   console.log(data)
-        // })
-        // const userEmail = {email}
-        // axiosSecure.post('/jwt',userEmail,{
-        //   withCredentials:true
-        // })
-        // .then(res=>{
-        //   console.log(res.data)
-        // })
-        
         navigate(location?.state ? location.state : "/");
   
       } catch (error) {

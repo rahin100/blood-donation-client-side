@@ -19,6 +19,7 @@ import AdminHome from "../Components/Dashboard/DashboardAdmin/AdminHome";
 import AllUsers from "../Components/Dashboard/DashboardAdmin/AllUsers";
 import AllBloodDonationRequest from "../Components/Dashboard/DashboardAdmin/AllBloodDonationRequest";
 import ContentManagement from "../Components/Dashboard/DashboardAdmin/ContentManagement";
+import Funding from "../Components/Funding/Funding";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "funding",
+        element: <Funding></Funding>,
       },
     ],
   },

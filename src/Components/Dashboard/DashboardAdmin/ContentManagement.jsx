@@ -122,6 +122,12 @@ const ContentManagement = () => {
 
         <div className="flex flex-wrap mb-4 space-y-2 md:space-y-0 md:space-x-2 mt-5">
           <button
+            className={`btn ${currentFilter === "all" && "btn-active"} w-full md:w-auto`}
+            onClick={() => handleFilterChange("all")}
+          >
+            All
+          </button>
+          <button
             className={`btn ${currentFilter === "draft" && "btn-active"} w-full md:w-auto`}
             onClick={() => handleFilterChange("draft")}
           >

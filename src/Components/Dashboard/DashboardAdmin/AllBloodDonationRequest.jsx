@@ -86,7 +86,7 @@ const AllBloodDonationRequest = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-[50%]">
         <thead>
             <tr>
               <th className="p-2">Requester Name</th>

@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAdmin from "../../../Hooks/useAdmin";
 
 
 
 /* eslint-disable react/prop-types */
 const AllBloodDonationRequestInfo = ({ data, refetch }) => {
+  const [isAdmin] = useAdmin();
   const {
     _id,
     requesterName,
@@ -112,12 +114,12 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
       <td className="p-2">{donationTime}</td>
       <td className="p-2">
         {donationStatus === "inprogress" ? (
-          <div className="flex gap-1">
+          <div className="">
             <button
               onClick={handleDone}
-              className="btn-sm bg-green-500 text-white"
+              className="btn-sm bg-green-500 text-white mb-1"
             >
-              Done
+              Donee
             </button>
             <button
               onClick={handleCancel}
@@ -134,21 +136,36 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
       <td className="p-2">{donorName}</td>
       <td className="p-2">{donorEmail}</td>
       <td className="p-2">
-        <Link to={`/dashboard/update-donation/${_id}`}>
+        {
+          isAdmin ? (
+            <Link to={`/dashboard/update-donation/${_id}`}>
           <button
-            className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+            className="btn btn-sm btn-primary"
           >
             Edit
           </button>
         </Link>
+          ) : (
+            <button disabled className="btn btn-sm btn-primary"
+          >
+            Edit
+          </button>
+          )
+        }
       </td>
-      <td className="p-2">
-        <button
-          onClick={handleDelete}
-          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
-        >
-          Delete
-        </button>
+      <td>
+        {isAdmin ? (
+          <button
+            onClick={handleDelete}
+            className="btn btn-sm btn-error text-white"
+          >
+            Delete
+          </button>
+        ) : (
+          <button disabled className="btn btn-sm">
+            Delete
+          </button>
+        )}
       </td>
       <td className="p-2">
         <Link to={`/view_details/${_id}`}>

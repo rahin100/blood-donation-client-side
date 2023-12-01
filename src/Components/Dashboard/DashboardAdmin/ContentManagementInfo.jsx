@@ -1,35 +1,39 @@
 /* eslint-disable no-unused-vars */
 
 import Swal from "sweetalert2";
+import useAdmin from "../../../Hooks/useAdmin";
 
 /* eslint-disable react/prop-types */
 const ContentManagementInfo = ({ singleBlog, refetch }) => {
   const { _id, title, photo } = singleBlog;
+  const [isAdmin] = useAdmin();
 
   const handlePublish = () => {
-    fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        blog_status: "published",
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        refetch();
-        if (data.modifiedCount > 0) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${title} Published`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    if (isAdmin) {
+      fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          blog_status: "published",
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          refetch();
+          if (data.modifiedCount > 0) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${title} Published`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    }
   };
   const handleUnPublish = () => {
     fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
@@ -56,20 +60,20 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
         }
       });
   };
- 
+
   const handleUpdateBlog = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const photo = form.photo.value;
     const content = form.content.value;
-  
+
     const updateBlog = {
       title: title,
       photo: photo,
       content: content,
     };
-  
+
     fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
       method: "PUT",
       headers: {
@@ -94,32 +98,33 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
         }
       });
   };
-  
 
   const handleDeleteBlog = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            refetch();
-            if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your blog has been deleted.", "success");
-            }
-          });
-      }
-    });
+    if (isAdmin) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              refetch();
+              if (data.deletedCount > 0) {
+                Swal.fire("Deleted!", "Your blog has been deleted.", "success");
+              }
+            });
+        }
+      });
+    }
   };
 
   return (
@@ -136,9 +141,18 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
       <td>{title}</td>
       <td>{singleBlog.blog_status}</td>
       <td>
-        <button onClick={handlePublish} className="btn btn-sm btn-primary">
-          Publish
-        </button>
+        {isAdmin ? (
+          <button
+            onClick={handlePublish}
+            className="btn btn-sm btn-primary"
+          >
+            Publish
+          </button>
+        ) : (
+          <button disabled className="btn btn-sm">
+            Publish
+          </button>
+        )}
       </td>
       <td>
         <button onClick={handleUnPublish} className="btn btn-sm btn-warning">
@@ -159,32 +173,32 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
               <h3 className="text-lg font-bold">Edit Blog</h3>
               <div className="py-4">
                 <form onSubmit={handleUpdateBlog} className="card-body">
-                    <div className="form-control md:w-1/2 lg:w-full">
-                      <label className="label">
-                        <span className="label-text">Title</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="title"
-                        placeholder="Title"
-                        defaultValue={title}
-                        className="input input-bordered"
-                        required
-                      />
-                    </div>
-                    <div className="form-control md:w-1/2 lg:w-full">
-                      <label className="label">
-                        <span className="label-text">Thumbnail</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="photo"
-                        defaultValue={photo}
-                        placeholder="Thumbnail URL"
-                        className="input input-bordered"
-                        required
-                      />
-                    </div>
+                  <div className="form-control md:w-1/2 lg:w-full">
+                    <label className="label">
+                      <span className="label-text">Title</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      defaultValue={title}
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                  <div className="form-control md:w-1/2 lg:w-full">
+                    <label className="label">
+                      <span className="label-text">Thumbnail</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="photo"
+                      defaultValue={photo}
+                      placeholder="Thumbnail URL"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
                   <div className="form-control md:w-1/2 lg:w-full">
                     <label className="label">
                       <span className="label-text">Content</span>
@@ -192,7 +206,6 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
                     <textarea
                       name="content"
                       placeholder="Content"
-
                       className="textarea textarea-bordered textarea-lg w-full max-w-4xl mb-3 h-[145px]"
                       required
                     ></textarea>
@@ -215,9 +228,18 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
         </div>
       </td>
       <td>
-        <button onClick={handleDeleteBlog} className="btn btn-sm btn-error">
-          Delete
-        </button>
+        {isAdmin ? (
+          <button
+            onClick={handleDeleteBlog}
+            className="btn btn-sm btn-error"
+          >
+            Delete
+          </button>
+        ) : (
+          <button disabled className="btn btn-sm">
+            Delete
+          </button>
+        )}
       </td>
     </tr>
   );

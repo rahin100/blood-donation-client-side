@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useCollectUsers from "../../../Hooks/useCollectUsers";
 
 const CreateDonationRequest = () => {
   const [all_districts, setAllDistricts] = useState([]);
@@ -12,20 +13,35 @@ const CreateDonationRequest = () => {
       .then((res) => res.json())
       .then((data) => setAllDistricts(data));
   }, []);
-  //   console.log(all_districts);
+
 
   useEffect(() => {
     fetch("http://localhost:5000/zilla")
       .then((res) => res.json())
       .then((data) => setAllZilla(data));
   }, []);
-  //   console.log(zilla);
+
+
+  // eslint-disable-next-line no-unused-vars
+  const [allUsers,refetch] = useCollectUsers()
+
+  const filteredUsers = allUsers?.filter((singleUser) => singleUser.status === "Blocked")
+  const isUserBlocked = filteredUsers.length > 0
 
   const axiosSecure = useAxiosSecure()
 
   const handleRequestSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+
+    if (isUserBlocked) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You are blocked and cannot create a donation request.",
+      });
+      return;
+    }
 
     const requesterName = form.requesterName.value;
     const requesterEmail = form.requesterEmail.value;

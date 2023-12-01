@@ -4,6 +4,7 @@ import useSecureAxios from "../../Hooks/useSecureAxios";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
+
 const CheckoutForm = () => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
@@ -21,6 +22,7 @@ const CheckoutForm = () => {
   };
 
   const price = calculateTotalPrice(donationAmount);
+  
 
   useEffect(() => {
     secureAxios.post("/create-payment-intent", { price })
@@ -62,14 +64,28 @@ const CheckoutForm = () => {
     } else if (paymentIntent.status === "succeeded") {
       console.log("[Payment Intent]", paymentIntent);
       setError("");
-      if(paymentIntent.status === 'succeeded'){
+      if (paymentIntent.status === 'succeeded') {
         Swal.fire({
-            icon: "success",
-            title: "YaY",
-            text: "Donation Successful",
-            
+          icon: "success",
+          title: "YaY",
+          text: "Donation Successful",
+        });
+        setTransactionId(paymentIntent.id);
+
+        const paymentData = {
+          name: user?.displayName,
+          email: user?.email,
+          price: donationAmount,
+          date: new Date().toISOString(),
+        };
+
+        secureAxios.post("/payment", paymentData)
+          .then(res => {
+            console.log(res.data);
+          })
+          .catch(err => {
+            console.error("Error submitting payment data:", err);
           });
-          setTransactionId(paymentIntent.id)
       }
     }
   };

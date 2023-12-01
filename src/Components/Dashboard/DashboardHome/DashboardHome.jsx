@@ -18,13 +18,13 @@ const DashboardHome = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <h1 className="text-xl text-white bg-[#ea062b] text-center p-4">
+      <h1 className="text-xl text-white bg-[#D2042D] text-center p-4">
         Welcome To your dashboard {user?.displayName}
       </h1>
 
       {donor.length > 0 && (
         <div>
-          <h2 className="mt-[30px] text-xl text-[#ea062b]">
+          <h2 className="mt-[30px] text-xl text-[#D2042D]">
             Recent Donation Requests:
           </h2>
           <div className="overflow-x-auto">
@@ -66,7 +66,7 @@ const DashboardHome = () => {
       )}
 
       {donor.length === 0 && (
-        <p className="text-[#ea062b] mt-4">
+        <p className="text-[#D2042D] mt-4">
           You have no recent donation requests.
         </p>
       )}

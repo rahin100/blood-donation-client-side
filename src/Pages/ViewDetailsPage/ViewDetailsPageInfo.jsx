@@ -51,7 +51,7 @@ const ViewDetailsPageInfo = ({ singleViewDetails, refetch }) => {
 
   return (
     <div>
-      <div className="card bg-[#ea062b] text-white">
+      <div className="card bg-[#D2042D] text-white">
         <div className="card-body">
           <h2 className="card-title">Requester Name: {requesterName}</h2>
           <h2 className="card-title">Recipient Name: {recipientName}</h2>

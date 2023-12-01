@@ -105,14 +105,14 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
 
   return (
     <tr>
-      <td className="p-2">{requesterName}</td>
-      <td className="p-2">{requesterEmail}</td>
-      <td className="p-2">{recipientName}</td>
-      <td className="p-2">{recipientDistrict}</td>
-      <td className="p-2">{recipientUpazila}</td>
-      <td className="p-2">{donationDate}</td>
-      <td className="p-2">{donationTime}</td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">{requesterName}</td>
+      <td className="p-2 text-[12px]">{requesterEmail}</td>
+      <td className="p-2 text-[12px]">{recipientName}</td>
+      <td className="p-2 text-[12px]">{recipientDistrict}</td>
+      <td className="p-2 text-[12px]">{recipientUpazila}</td>
+      <td className="p-2 text-[12px]">{donationDate}</td>
+      <td className="p-2 text-[12px]">{donationTime}</td>
+      <td className="p-2 text-[12px]">
         {donationStatus === "inprogress" ? (
           <div className="">
             <button
@@ -133,9 +133,9 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
         )}
       </td>
 
-      <td className="p-2">{donorName}</td>
-      <td className="p-2">{donorEmail}</td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">{donorName}</td>
+      <td className="p-2 text-[12px]">{donorEmail}</td>
+      <td className="p-2 text-[12px]">
         {
           isAdmin ? (
             <Link to={`/dashboard/update-donation/${_id}`}>
@@ -146,14 +146,14 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
           </button>
         </Link>
           ) : (
-            <button disabled className="btn btn-sm btn-primary"
+            <button disabled className="btn btn-sm btn-primary text-white"
           >
             Edit
           </button>
           )
         }
       </td>
-      <td>
+      <td className="p-2 text-[12px]">
         {isAdmin ? (
           <button
             onClick={handleDelete}
@@ -170,7 +170,7 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
       <td className="p-2">
         <Link to={`/view_details/${_id}`}>
           <button
-            className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+            className="btn btn-sm btn-warning text-white"
           >
             Details
           </button>

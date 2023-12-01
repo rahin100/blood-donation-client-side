@@ -28,20 +28,20 @@ const DashboardHome = () => {
             Recent Donation Requests:
           </h2>
           <div className="overflow-x-auto">
-            <table className="table">
+            <table className="min-w-[50%] text-center">
               <thead>
                 <tr>
-                  <th className="p-2">Recipient Name</th>
-                  <th className="p-2">Recipient District</th>
-                  <th className="p-2">Recipient Upazila</th>
-                  <th className="p-2">Donation Date</th>
-                  <th className="p-2">Donation Time</th>
-                  <th className="p-2">Donation Status</th>
-                  <th className="p-2">Donor Name</th>
-                  <th className="p-2">Donor Email</th>
-                  <th className="p-2">Edit</th>
-                  <th className="p-2">Delete</th>
-                  <th className="p-2">View</th>
+                  <th className="p-2 text-[12px]">Recipient Name</th>
+                  <th className="p-2 text-[12px]">Recipient District</th>
+                  <th className="p-2 text-[12px]">Recipient Upazila</th>
+                  <th className="p-2 text-[12px]">Donation Date</th>
+                  <th className="p-2 text-[12px]">Donation Time</th>
+                  <th className="p-2 text-[12px]">Donation Status</th>
+                  <th className="p-2 text-[12px]">Donor Name</th>
+                  <th className="p-2 text-[12px]">Donor Email</th>
+                  <th className="p-2 text-[12px]">Edit</th>
+                  <th className="p-2 text-[12px]">Delete</th>
+                  <th className="p-2 text-[12px]">View</th>
                 </tr>
               </thead>
               <tbody>

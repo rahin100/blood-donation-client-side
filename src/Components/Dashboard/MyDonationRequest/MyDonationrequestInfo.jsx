@@ -101,19 +101,19 @@ const MyDonationrequestInfo = ({ data, refetch }) => {
 
   return (
     <tr>
-      <td className="p-2">{recipientName}</td>
-      <td className="p-2">{recipientDistrict}</td>
-      <td className="p-2">{recipientUpazila}</td>
-      <td className="p-2">{donationDate}</td>
-      <td className="p-2">{donationTime}</td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">{recipientName}</td>
+      <td className="p-2 text-[12px]">{recipientDistrict}</td>
+      <td className="p-2 text-[12px]">{recipientUpazila}</td>
+      <td className="p-2 text-[12px]">{donationDate}</td>
+      <td className="p-2 text-[12px]">{donationTime}</td>
+      <td className="p-2 text-[12px]">
         {donationStatus === "inprogress" ? (
-          <div className="flex gap-1">
+          <div className="">
             <button
               onClick={handleDone}
-              className="btn-sm bg-green-500 text-white"
+              className="btn-sm bg-green-500 text-white mb-1"
             >
-              Done
+              Donee
             </button>
             <button
               onClick={handleCancel}
@@ -127,29 +127,29 @@ const MyDonationrequestInfo = ({ data, refetch }) => {
         )}
       </td>
 
-      <td className="p-2">{donorName}</td>
-      <td className="p-2">{donorEmail}</td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">{donorName}</td>
+      <td className="p-2 text-[12px]">{donorEmail}</td>
+      <td className="p-2 text-[12px]">
         <Link to={`/dashboard/update-donation/${_id}`}>
           <button
-            className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+            className="btn btn-sm btn-primary text-white"
           >
             Edit
           </button>
         </Link>
       </td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">
         <button
           onClick={handleDelete}
-          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+          className="btn btn-sm btn-error text-white"
         >
           Delete
         </button>
       </td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">
         <Link to={`/view_details/${_id}`}>
           <button
-            className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+            className="btn btn-sm btn-warning text-white"
           >
             Details
           </button>

@@ -160,7 +160,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
       <td className="p-2">
         <button
           onClick={handleBlock}
-          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-xl cursor-pointer"
+          className="btn btn-sm btn-error text-white"
         >
           Block
         </button>
@@ -168,7 +168,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
       <td className="p-2">
         <button
           onClick={handleUnBlock}
-          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-xl cursor-pointer"
+          className="btn btn-sm btn-info text-white"
         >
           Unblock
         </button>
@@ -176,7 +176,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
       <td className="p-2">
         <button
           onClick={handleMakeVolunteer}
-          className="btn-sm text-[11px] bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-xl cursor-pointer"
+          className="btn btn-sm btn-warning text-white"
         >
           Make Volunteer
         </button>
@@ -184,7 +184,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
 
       <td className="p-2">
         <select
-          className="select select-bordered join-item bg-[#ea062b] text-white border-none"
+          className="select select-bordered join-item btn btn-sm btn-success bg-green-700 text-white "
           onChange={(e) => {
             const selectedOption = e.target.value;
             if (selectedOption === "Donor to Admin") {

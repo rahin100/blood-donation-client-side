@@ -101,12 +101,12 @@ const DashboardHomeInfo = ({ data, refetch }) => {
 
   return (
     <tr>
-      <td className="p-2">{recipientName}</td>
-      <td className="p-2">{recipientDistrict}</td>
-      <td className="p-2">{recipientUpazila}</td>
-      <td className="p-2">{donationDate}</td>
-      <td className="p-2">{donationTime}</td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">{recipientName}</td>
+      <td className="p-2 text-[12px]">{recipientDistrict}</td>
+      <td className="p-2 text-[12px]">{recipientUpazila}</td>
+      <td className="p-2 text-[12px]">{donationDate}</td>
+      <td className="p-2 text-[12px]">{donationTime}</td>
+      <td className="p-2 text-[12px]">
         {donationStatus === "inprogress" ? (
           <div className="flex gap-1">
             <button
@@ -127,31 +127,31 @@ const DashboardHomeInfo = ({ data, refetch }) => {
         )}
       </td>
 
-      <td className="p-2">{donorName}</td>
-      <td className="p-2">{donorEmail}</td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">{donorName}</td>
+      <td className="p-2 text-[12px]">{donorEmail}</td>
+      <td className="p-2 text-[12px]">
         <Link to={`/dashboard/update-donation/${_id}`}>
           <td
             
-            className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+            className="btn btn-sm btn-primary text-white"
           >
             Edit
           </td>
         </Link>
       </td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">
         <td
           onClick={handleDelete}
-          className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+          className="btn btn-sm btn-error text-white"
         >
           Delete
         </td>
       </td>
-      <td className="p-2">
+      <td className="p-2 text-[12px]">
         <Link to={`/view_details/${_id}`}>
           <td
             
-            className="btn-sm bg-[#ea062b] text-white border-none hover:bg-black hover:text-white rounded-2xl cursor-pointer"
+            className="btn btn-sm btn-warning text-white"
           >
             Details
           </td>

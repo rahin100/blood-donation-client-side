@@ -18,7 +18,7 @@ const DashboardHomeInfo = ({ data, refetch }) => {
   } = data;
 
   const handleDone = () => {
-    fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const DashboardHomeInfo = ({ data, refetch }) => {
   };
 
   const handleCancel = () => {
-    fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const DashboardHomeInfo = ({ data, refetch }) => {
       confirmButtonText: "Yes, delete it",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+        fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

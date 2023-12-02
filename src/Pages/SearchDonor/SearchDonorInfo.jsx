@@ -6,12 +6,12 @@ const SearchDonorInfo = ({ singleUser }) => {
   return (
     <Container>
       <div className="card bg-base-100 shadow-xl mt-5 mb-5">
-        <figure className="px-10 pt-10 h-[400px]">
+        <figure className="px-10 pt-10 h-[300px]">
           <img src={photo} alt="Shoes" className="rounded-xl h-full" />
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title">Name: {name}</h2>
-          <h2 className="card-title">Email: {email}</h2>
+          <h2 className="card-title">Name:{name}</h2>
+          <h2 className="card-title">Email:{email}</h2>
           <p>BG: {bloodGroup}</p>
           <p>District: {district}</p>
           <p>Upazila: {upazila}</p>

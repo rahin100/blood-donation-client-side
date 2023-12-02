@@ -22,7 +22,7 @@
 //   } = data;
 
 //   const handleDone = () => {
-//     fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+//     fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
 //       method: "PATCH",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -50,7 +50,7 @@
 //   };
 
 //   const handleCancel = () => {
-//     fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+//     fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
 //       method: "PATCH",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -88,7 +88,7 @@
 //       confirmButtonText: "Yes, delete it",
 //     }).then((result) => {
 //       if (result.isConfirmed) {
-//         fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+//         fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
 //           method: "DELETE",
 //         })
 //           .then((res) => res.json())
@@ -207,7 +207,7 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
 
   const handleDone = () => {
     // Send request to mark donation as 'Done'
-    fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -235,7 +235,7 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
 
   const handleCancel = () => {
     // Send request to mark donation as 'Canceled'
-    fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -274,7 +274,7 @@ const AllBloodDonationRequestInfo = ({ data, refetch }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         // Send request to delete donation
-        fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+        fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

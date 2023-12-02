@@ -11,14 +11,14 @@ const ProfileInfo = ({ singleProfile,refetch }) => {
   const {_id, name, email, district, upazila, bloodGroup, photo } = singleProfile;
 
   useEffect(()=>{
-    fetch("http://localhost:5000/all_districts")
+    fetch("https://blood-donation-server-side-three.vercel.app/all_districts")
     .then((res)=>res.json())
     .then((data)=>setAllDistricts(data))
   },[])
   console.log(all_districts)
   
   useEffect(()=>{
-    fetch("http://localhost:5000/zilla")
+    fetch("https://blood-donation-server-side-three.vercel.app/zilla")
     .then((res)=>res.json())
     .then((data)=>setAllZilla(data))
   },[])
@@ -47,7 +47,7 @@ const ProfileInfo = ({ singleProfile,refetch }) => {
     
     console.log(updateInfo)
 
-    fetch(`http://localhost:5000/users/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/users/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

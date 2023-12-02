@@ -11,14 +11,14 @@ const UpdateDonation = () => {
   const [zilla, setAllZilla] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/all_districts")
+    fetch("https://blood-donation-server-side-three.vercel.app/all_districts")
       .then((res) => res.json())
       .then((data) => setAllDistricts(data));
   }, []);
   console.log(all_districts);
 
   useEffect(() => {
-    fetch("http://localhost:5000/zilla")
+    fetch("https://blood-donation-server-side-three.vercel.app/zilla")
       .then((res) => res.json())
       .then((data) => setAllZilla(data));
   }, []);
@@ -77,7 +77,7 @@ const UpdateDonation = () => {
    
 
 
-    fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

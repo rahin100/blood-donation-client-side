@@ -6,7 +6,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
   const { _id, name, photo, email, status, Role } = singleUser;
 
   const handleBlock = () => {
-    fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-users/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
   };
 
   const handleUnBlock = () => {
-    fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-users/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
   };
 
   const handleMakeVolunteer = () => {
-    fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-users/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
   const handleDonorToAdmin = () => {
     // Add a condition to check if the current role is "Donor"
     if (Role === "Donor") {
-      fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
+      fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-users/${_id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const AllUsersInfo = ({ singleUser, refetch }) => {
   };
 
   const handleVolunteerToAdmin = () => {
-    fetch(`http://localhost:5000/dashboard/all-users/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-users/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

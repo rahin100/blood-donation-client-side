@@ -22,7 +22,7 @@ const ViewDetailsPageInfo = ({ singleViewDetails, refetch }) => {
   } = singleViewDetails;
 
   const handleDonate = () => {
-    fetch(`http://localhost:5000/dashboard/donation-request/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/donation-request/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

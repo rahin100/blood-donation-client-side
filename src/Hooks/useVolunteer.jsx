@@ -4,12 +4,12 @@ import useSecureAxios from "./useSecureAxios";
 import { useQuery } from "@tanstack/react-query";
 
 const useVolunteer = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user} = useContext(AuthContext);
   const secureAxios = useSecureAxios();
 
-  const { data: isVolunteer } = useQuery({
+  const { data: isVolunteer, isLoading:isVolunteerLoading } = useQuery({
     queryKey: ["isVolunteer", user?.email],
-    enabled: !loading,
+    
     queryFn: async () => {
       try {
         const res = await secureAxios.get(`/users/volunteer/${user?.email}`);
@@ -22,7 +22,7 @@ const useVolunteer = () => {
     },
   });
 
-  return [isVolunteer,loading];
+  return [isVolunteer,isVolunteerLoading];
 };
 
 export default useVolunteer;

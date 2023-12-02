@@ -16,13 +16,13 @@ const SearchDonor = () => {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    fetch("http://localhost:5000/all_districts")
+    fetch("https://blood-donation-server-side-three.vercel.app/all_districts")
       .then((res) => res.json())
       .then((data) => setAllDistricts(data));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/zilla")
+    fetch("https://blood-donation-server-side-three.vercel.app/zilla")
       .then((res) => res.json())
       .then((data) => setZilla(data));
   }, []);

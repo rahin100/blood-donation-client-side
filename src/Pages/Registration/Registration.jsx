@@ -15,13 +15,13 @@ const Registration = () => {
   const [dis, setDis] = useState([]);
   const [upozilas, setUpozilas] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/all_districts")
+    fetch("https://blood-donation-server-side-three.vercel.app/all_districts")
       .then((res) => res.json())
       .then((data) => setDis(data));
   }, []);
 
   useEffect(() => {
-    fetch("./dhakaupazilas.json")
+    fetch("https://blood-donation-server-side-three.vercel.app/zilla")
       .then((res) => res.json())
       .then((data) => setUpozilas(data));
   }, []);

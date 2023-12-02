@@ -3,20 +3,24 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Container from "../Container/Container";
+import useAdmin from "../../Hooks/useAdmin";
+import useVolunteer from "../../Hooks/useVolunteer";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
+  const [isVolunteer] = useVolunteer();
 
   const navigate = useNavigate();
 
- const handleSignOut = async () => {
-  try {
-    await logOut();
-    navigate("/");
-  } catch (error) {
-    console.error("Logout error:", error);
-  }
-};
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   const navLink = (
     <>
@@ -62,10 +66,10 @@ const Navbar = () => {
         Blog
       </NavLink>
 
-      {
-        user?.email ? (
-          ""
-        ) : (<NavLink
+      {user?.email ? (
+        ""
+      ) : (
+        <NavLink
           to={"/login"}
           className={({ isActive, isPending }) =>
             isActive
@@ -77,8 +81,8 @@ const Navbar = () => {
         >
           {/* other code */}
           Log in
-        </NavLink>)
-      }
+        </NavLink>
+      )}
       <NavLink
         to={"/registration"}
         className={({ isActive, isPending }) =>
@@ -95,19 +99,52 @@ const Navbar = () => {
 
       {user?.email ? (
         <>
-          <NavLink
-            to={"/dashboard"}
-            className={({ isActive, isPending }) =>
-              isActive
-                ? "bg-red-500 text-white text-[16px] font-bold mr-3 p-2 rounded-lg"
-                : isPending
-                ? "pending"
-                : "text-black text-[16px] font-bold mr-3 p-2 rounded-lg"
-            }
-          >
-            {/* other code */}
-            Dashboard
-          </NavLink>
+          {isAdmin && (
+            <NavLink
+              to={"/dashboard/admin-home"}
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "bg-red-500 text-white text-[16px] font-bold mr-3 p-2 rounded-lg"
+                  : isPending
+                  ? "pending"
+                  : "text-black text-[16px] font-bold mr-3 p-2 rounded-lg"
+              }
+            >
+              {/* other code */}
+              Dashboard
+            </NavLink>
+          )}
+          {isVolunteer && (
+            <NavLink
+              to={"/dashboard/volunteer-home"}
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "bg-red-500 text-white text-[16px] font-bold mr-3 p-2 rounded-lg"
+                  : isPending
+                  ? "pending"
+                  : "text-black text-[16px] font-bold mr-3 p-2 rounded-lg"
+              }
+            >
+              {/* other code */}
+              Dashboard
+            </NavLink>
+          )}
+
+          {!isVolunteer && !isAdmin && (
+            <NavLink
+              to={"/dashboard/donor-home"}
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? "bg-red-500 text-white text-[16px] font-bold mr-3 p-2 rounded-lg"
+                  : isPending
+                  ? "pending"
+                  : "text-black text-[16px] font-bold mr-3 p-2 rounded-lg"
+              }
+            >
+              {/* other code */}
+              Dashboard
+            </NavLink>
+          )}
 
           <NavLink
             to={"/funding"}

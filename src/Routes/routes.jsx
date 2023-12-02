@@ -16,10 +16,13 @@ import ViewDetails from "../Pages/ViewDetailsPage/ViewDetails";
 import PrivateRoute from "./PrivateRoute";
 import UpdateDonation from "../Pages/UpdateDonation/UpdateDonation";
 import AdminHome from "../Components/Dashboard/DashboardAdmin/AdminHome";
+// import VolunteerHome from "../Components/Dashboard/DashboardAdmin/VolunteerHome";
 import AllUsers from "../Components/Dashboard/DashboardAdmin/AllUsers";
 import AllBloodDonationRequest from "../Components/Dashboard/DashboardAdmin/AllBloodDonationRequest";
 import ContentManagement from "../Components/Dashboard/DashboardAdmin/ContentManagement";
 import Funding from "../Components/Funding/Funding";
+import AdminRoute from "./AdminRoute";
+import VolunteerRoute from "./VolunteerRoute";
 
 const router = createBrowserRouter([
   {
@@ -66,7 +69,7 @@ const router = createBrowserRouter([
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
-        path: "/dashboard",
+        path: "donor-home",
         element: <PrivateRoute><DashboardHome></DashboardHome></PrivateRoute>
       },
       {
@@ -87,8 +90,12 @@ const router = createBrowserRouter([
       },
       // Admin routes 
       {
-        path: "/dashboard",
-        element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>,
+        path: "admin-home",
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>,
+      },
+      {
+        path: "volunteer-home",
+        element: <VolunteerRoute><AdminHome></AdminHome></VolunteerRoute>,
       },
       {
         path: "/dashboard/all-users",

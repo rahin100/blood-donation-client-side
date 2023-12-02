@@ -1,6 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
-import Container from "../Container/Container";
 import useVolunteer from "../../Hooks/useVolunteer";
 
 const Dashboard = () => {
@@ -14,7 +13,7 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li className="text-[14px] font-semibold">
-                <NavLink to="/dashboard">Admin Home</NavLink>
+                <NavLink to="/dashboard/admin-home">Admin Home</NavLink>
               </li>
               <li className="text-[14px] font-semibold">
                 <NavLink to="/dashboard/all-users">All Users Page</NavLink>
@@ -33,7 +32,7 @@ const Dashboard = () => {
           ) : isVolunteer ? (
             <>
               <li className="text-[14px] font-semibold">
-                <NavLink to="/dashboard">Volunteer Home</NavLink>
+                <NavLink to="/dashboard/volunteer-home">Volunteer Home</NavLink>
               </li>
               <li className="text-[14px] font-semibold">
                 <NavLink to="/dashboard/all-blood-donation-requests">
@@ -49,7 +48,7 @@ const Dashboard = () => {
           ) : (
             <>
               <li className="text-[14px] font-semibold">
-                <NavLink to="/dashboard">Donor Home</NavLink>
+                <NavLink to="/dashboard/donor-home">Donor Home</NavLink>
               </li>
               <li className="text-[14px] font-semibold">
                 <NavLink to="/dashboard/profile">Donor Profile</NavLink>
@@ -68,11 +67,10 @@ const Dashboard = () => {
           )}
         </ul>
       </div>
-      <Container>
-        <div className="flex-1">
-          <Outlet />
-        </div>
-      </Container>
+
+      <div className="flex-1">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
 
   const handlePublish = () => {
     if (isAdmin) {
-      fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
+      fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-blogs/${_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
     }
   };
   const handleUnPublish = () => {
-    fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-blogs/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
       content: content,
     };
 
-    fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
+    fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-blogs/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
         confirmButtonText: "Yes, delete it",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/dashboard/all-blogs/${_id}`, {
+          fetch(`https://blood-donation-server-side-three.vercel.app/dashboard/all-blogs/${_id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())
@@ -181,7 +181,7 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
                       type="text"
                       name="title"
                       placeholder="Title"
-                      defaultValue={title}
+                      
                       className="input input-bordered"
                       required
                     />
@@ -193,7 +193,7 @@ const ContentManagementInfo = ({ singleBlog, refetch }) => {
                     <input
                       type="text"
                       name="photo"
-                      defaultValue={photo}
+                      
                       placeholder="Thumbnail URL"
                       className="input input-bordered"
                       required

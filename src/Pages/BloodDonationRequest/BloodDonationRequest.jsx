@@ -1,12 +1,28 @@
+import { useQuery } from "@tanstack/react-query";
 import Container from "../../Components/Container/Container";
-import useDonationRequest from "../../Hooks/useDonationRequest";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+// import useDonationRequest from "../../Hooks/useDonationRequest";
 import BloodDonationRequestInfo from "./BloodDonationRequestInfo";
 
 const BloodDonationRequest = () => {
 
 
-  const [donationRequest, refetch] = useDonationRequest();
-  console.log(donationRequest);
+  // const [donationRequest] = useDonationRequest();
+  // console.log(donationRequest);
+
+  
+
+  const axiosSecure = useAxiosSecure();
+
+  const { data: donationRequest } = useQuery({
+    queryKey: ["donationRequest"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/donation-request");
+      return res.data;
+    },
+  });
+
+
 
   return (
     <Container>
@@ -31,7 +47,6 @@ const BloodDonationRequest = () => {
                 <BloodDonationRequestInfo
                   key={singleBloodDonation._id}
                   singleBloodDonation={singleBloodDonation}
-                  refetch={refetch}
                 ></BloodDonationRequestInfo>
               ))}
             </tbody>
